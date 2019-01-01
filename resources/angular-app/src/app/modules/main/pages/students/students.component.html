@@ -1,0 +1,10 @@
+<div>
+	<ol>
+		<li *ngFor="let stud of students" (click)="onSelect(stud)" [class.selected] = "stud === selectedStudent">
+			{{stud.name}}
+		</li>
+	</ol>
+</div>
+
+<app-student-detail [student]="selectedStudent"></app-student-detail>
+
