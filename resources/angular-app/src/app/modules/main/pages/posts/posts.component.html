@@ -1,0 +1,9 @@
+<p>posts</p>
+
+<div>
+	<ol style="list-style: none;">
+		<li *ngFor="let post of posts">
+			{{post.id}} &nbsp; &nbsp;<a routerLink="/post-details/{{post.id}}">{{ post.post }}</a>
+		</li>
+	</ol>
+</div>

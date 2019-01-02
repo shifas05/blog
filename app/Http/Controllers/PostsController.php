@@ -92,4 +92,12 @@ class PostsController extends Controller
     {
         //
     }
+    public function getPosts()
+    {
+        return $this->postService->getEveryPosts();
+    }
+    public function getPost($id)
+    {
+        return $this->postService->getPost($id);
+    }
 }

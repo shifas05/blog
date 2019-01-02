@@ -23,4 +23,8 @@ class PostsService
 	{
 		return $this->post->orderBy('id','desc')->with('user')->get();
 	}
+	public function getPost($id)
+	{
+		return $this->post->find($id);
+	}
 }

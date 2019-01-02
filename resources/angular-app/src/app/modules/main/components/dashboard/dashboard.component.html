@@ -1,8 +1,7 @@
-<h3>Students</h3>
 <div>
 	<ol>
-		<!-- <li *ngFor="let students of student">
-			{{ student.name }}
-		</li> -->
+		<li *ngFor="let student of students">
+			<a routerLink="/detail/{{student.id}}">{{student.name}}</a>
+		</li>
 	</ol>
 </div>

@@ -1,10 +1,10 @@
 <div>
 	<ol>
 		<li *ngFor="let stud of students" (click)="onSelect(stud)" [class.selected] = "stud === selectedStudent">
-			{{stud.name}}
+			<a routerLink="/detail/{{stud.id}}">{{stud.name}}</a>
 		</li>
 	</ol>
 </div>
 
-<app-student-detail [student]="selectedStudent"></app-student-detail>
+<!-- <app-student-detail [student]="selectedStudent"></app-student-detail> -->
 
