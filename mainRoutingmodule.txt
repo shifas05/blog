@@ -1,0 +1,50 @@
+import { NgModule } from '@angular/core';
+import { Routes, RouterModule } from '@angular/router';
+import { LayoutComponent } from './pages/layout/layout.component';
+import { AuthGuardService } from "../shared/services/auth-guard.service";
+
+import { AuditFileComponent } from './pages/audit-file/audit-file.component';
+import { FileTrackerComponent } from './pages/file-tracker/file-tracker.component';
+import { HoldFilesComponent } from './pages/hold-files/hold-files.component';
+import { ReportsPageComponent } from './pages/reports-page/reports-page.component';
+import { AuditFilesListComponent } from './pages/audit-files-list/audit-files-list.component';
+import { FileTrackerListComponent } from './pages/file-tracker-list/file-tracker-list.component';
+import { HoldFilesListComponent } from './pages/hold-files-list/hold-files-list.component';
+import { WorkingFilesListComponent } from './pages/working-files-list/working-files-list.component';
+import { WorkingFileComponent } from './pages/working-file/working-file.component';
+import { ImportFileComponent } from './pages/import-file/import-file.component';
+import { DashboardComponent } from './pages/dashboard/dashboard.component';
+
+const routes: Routes = [
+  {
+    path:'main',
+    component:LayoutComponent,
+    canActivate:[AuthGuardService],
+    canActivateChild:[AuthGuardService],
+    children:[
+      {
+        path:'',
+        // component:DashboardComponent,
+        children:[
+          { path:'dashboard', component:DashboardComponent },
+          { path:'audit-file-list', component:AuditFilesListComponent },
+          { path:'audit-file/:id' , component:AuditFileComponent },
+          { path:'file-tracker-list' , component:FileTrackerListComponent },
+          { path:'file-tracker/:id' , component:FileTrackerComponent },
+          { path:'hold-file-list' , component:HoldFilesListComponent },
+          { path:'hold-file/:id' , component:HoldFilesComponent },
+          { path:'working-file-list' , component:WorkingFilesListComponent },
+          { path:'working-file/:id' , component:WorkingFileComponent },
+          { path:'reports', component:ReportsPageComponent },
+          { path:'import-file', component:ImportFileComponent }
+        ]
+      }
+    ]
+  }
+];
+
+@NgModule({
+  imports: [RouterModule.forChild(routes)],
+  exports: [RouterModule]
+})
+export class MainRoutingModule { }

@@ -1,7 +1,57 @@
 <p>
   post-details
 </p>
+<div class="container">
+	<div *ngIf="post">
+		<form #postForm="ngForm" ngSubmit="onSubmit()">
+			<div class="form-group">
+				<input 
+				class="form-control" 
+				type="text" 
+				name="title" 
+				[(ngModel)]="post.title" 
+				id="title"
+				#title="ngModel"
+				required>	
+			</div>
+			<div class="form-group">
+				<textarea 
+				class="form-control" 
+				[(ngModel)]="post.post" 
+				name="post" 
+				id="post"
+				required></textarea>	
+			</div>
+			
+			<br/>
+			<button type="button" class="btn btn-success" (click)="newPost();">Submit</button>
+		</form>
+	</div>
 
-<div *ngIf="post">
-	<input type="text" name="title" [(ngModel)]="post.title">
+Add Post
+	<form #postForm="ngForm" ngSubmit="onSubmitPost()">
+		<div class="form-group">
+			<label for="title">Title</label>
+			<input 
+			type="text" 
+			class="form-control" 
+			id="title" 
+			name="title" 
+			placeholder="Add Post Title" 
+			[(ngModel)]="addPost.title"
+			#addTitle="ngModel"
+			required>
+		</div>
+		<div class="form-group">
+			<label for="post">Post</label>
+			<textarea 
+			id="post" 
+			class="form-control"
+			name="post" 
+			[(ngModel)]="addPost.post"
+			required></textarea>
+		</div>
+		<button type="button" class="btn btn-success" (click)="addPosts();">Submit</button>
+	</form>
 </div>
+		

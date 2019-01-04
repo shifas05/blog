@@ -27,4 +27,25 @@ class PostsService
 	{
 		return $this->post->find($id);
 	}
+	public function updatePost($data,$id)
+	{
+		// return $data;
+		// echo print_r($data);
+		$post = $this->post->find($data['id']);
+		$post->title = $data['title'];
+		$post->post = $data['post'];
+		$result = $post->save();
+		return  response()->json("success");
+	}
+	public function addPostFront($data)
+	{
+		// return $data;
+		$this->post->user_id = "2";
+		$this->post->post = $data['post'];
+		$this->post->title = $data['title'];
+		if($this->post->save())
+		{
+			return response()->json("success");
+		}
+	}
 }

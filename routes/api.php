@@ -16,5 +16,27 @@ use Illuminate\Http\Request;
 Route::middleware('auth:api')->get('/user', function (Request $request) {
     return $request->user();
 });
+// Route::group(['prefix'=>'Api/','namespace'=>'Api'],function () {
+	// Route::get('/get-posts','Api/PostsController@getPosts');
+	// Route::get('/get-post/{id}','Api/PostsController@getPost');
+	// Route::post('/post/{id}/{post}','Api/PostsController@updatePost');
+// });
 Route::get('/get-posts','PostsController@getPosts');
 Route::get('/get-post/{id}','PostsController@getPost');
+Route::post('/post/{id}/{post}','Api\PostsController@updatePost');
+
+Route::resource('post','Api\PostsController');
+// Route::put('post/{post}',function($id){
+// 	return $id;
+// });
+
+Route::put('post/{post}', 'Api\PostsController@update');
+Route::post('post', 'Api\PostsController@store');
+
+// Route::group(['prefix' => 'api', 'namespace'=>'Api'],function () {
+// 	Route::put('post/{post}','Api\PostsController@update');
+// });
+// Route::prefix('audit-file')->group(function () {
+        // Route::resource('post','Api\PostsController');
+        // Route::post('datatable','Api\AuditController@dataTable');
+    // });

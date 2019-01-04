@@ -1,9 +1,12 @@
 <?php
 
-namespace App\Http\Controllers;
+namespace App\Http\Controllers\Api;
 
 use Illuminate\Http\Request;
+use App\Http\Controllers\Controller;
+
 use App\Services\PostsService;
+
 
 class PostsController extends Controller
 {
@@ -18,8 +21,7 @@ class PostsController extends Controller
      */
     public function index()
     {
-        $posts = $this->postService->getEveryPosts();
-        return view('home')->with('posts',$posts);
+        //
     }
 
     /**
@@ -40,12 +42,8 @@ class PostsController extends Controller
      */
     public function store(Request $request)
     {
-        $this->validate($request,[
-            'blog_title'=>'required',
-            'blog_post'=>'required']);
-
-        $this->postService->addPost($request->all());
-        return redirect()->route("post.index")->with('success_message', 'success!');
+        // return $request->all();
+        return $this->postService->addPostFront($request->all());
     }
 
     /**
@@ -79,7 +77,7 @@ class PostsController extends Controller
      */
     public function update(Request $request, $id)
     {
-        //
+        return $this->postService->updatePost($request->all(), $id);
     }
 
     /**
@@ -92,17 +90,13 @@ class PostsController extends Controller
     {
         //
     }
-    public function getPosts()
-    {
-        return $this->postService->getEveryPosts();
-    }
-    public function getPost($id)
-    {
-        return $this->postService->getPost($id);
-    }
-    public function updatePost(Request $request)
-    {
-        dd($request->all());
-    }
-    
+    // public function getPosts()
+    // {
+    //     return $this->postService->getEveryPosts();
+    // }
+    // public function getPost($id)
+    // {
+    //     return $this->postService->getPost($id);
+    // }
+
 }

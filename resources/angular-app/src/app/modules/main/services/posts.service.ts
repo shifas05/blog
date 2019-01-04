@@ -18,4 +18,10 @@ export class PostsService {
   getPost(id: number): Observable<any>{
   	return this.http.get<any>(`${API.url}/get-post/`+id);
   }
+  updatePost(id: number,post): Observable<any[]>{
+  	return this.http.put<any[]>(`${API.url}/post/${id}`,post,httpOptions);
+  }
+  addPosts(data): Observable<any[]>{
+  	return this.http.post<any[]>(`${API.url}/post`,data,httpOptions);
+  }
 }

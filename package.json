@@ -24,6 +24,7 @@
     },
     "dependencies": {
         "@angular/cli": "^7.1.4",
+        "@auth0/angular-jwt": "^2.1.0",
         "font-awesome": "^4.7.0"
     }
 }
