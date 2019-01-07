@@ -2,6 +2,7 @@ import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
 import { FormsModule } from '@angular/forms';
 import { HttpClientModule } from '@angular/common/http'
+import { JwtModule } from '@auth0/angular-jwt';
 
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
@@ -13,6 +14,8 @@ import { UserComponent } from './modules/main/pages/user/user.component';
 import { UserDetailComponent } from './modules/main/components/user-detail/user-detail.component';
 import { PostsComponent } from './modules/main/pages/posts/posts.component';
 import { PostDetailComponent } from './modules/main/components/post-detail/post-detail.component';
+import { API } from "./settings";
+import { LoginComponent } from './modules/main/components/login/login.component';
 
 @NgModule({
   declarations: [
@@ -25,12 +28,20 @@ import { PostDetailComponent } from './modules/main/components/post-detail/post-
     UserDetailComponent,
     PostsComponent,
     PostDetailComponent,
+    LoginComponent,
   ],
   imports: [
     BrowserModule,
     AppRoutingModule,
     FormsModule,
-    HttpClientModule
+    HttpClientModule,
+    JwtModule.forRoot({
+      config: {
+        tokenGetter: function  tokenGetter() {
+             return     localStorage.getItem('access_token');},
+        whitelistedDomains: [API.url],
+      }
+    })
   ],
   providers: [],
   bootstrap: [AppComponent]

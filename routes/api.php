@@ -33,6 +33,12 @@ Route::resource('post','Api\PostsController');
 Route::put('post/{post}', 'Api\PostsController@update');
 Route::post('post', 'Api\PostsController@store');
 
+Route::post('user/register', 'Api\ApiRegisterController@register');
+Route::post('user/login', 'Api\ApiLoginController@login');
+
+Route::middleware('jwt.auth')->get('users', function(Request $request) {
+    return auth()->user();
+});
 // Route::group(['prefix' => 'api', 'namespace'=>'Api'],function () {
 // 	Route::put('post/{post}','Api\PostsController@update');
 // });

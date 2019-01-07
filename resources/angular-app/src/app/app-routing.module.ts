@@ -8,6 +8,7 @@ import { UserComponent } from './modules/main/pages/user/user.component';
 import { UserDetailComponent } from './modules/main/components/user-detail/user-detail.component';
 import { PostsComponent } from './modules/main/pages/posts/posts.component';
 import { PostDetailComponent } from './modules/main/components/post-detail/post-detail.component';
+import { LoginComponent } from './modules/main/components/login/login.component';
 
 const routes: Routes = [
 	{ path: '', redirectTo: 'dashboard', pathMatch: 'full' },
@@ -18,6 +19,7 @@ const routes: Routes = [
 	{ path: 'user-details/:id', component: UserDetailComponent },
 	{ path: 'posts', component: PostsComponent },
 	{ path: 'post-details/:id', component: PostDetailComponent },
+	{ path: 'login', component: LoginComponent },
 ];
 
 @NgModule({

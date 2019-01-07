@@ -1,0 +1,16 @@
+<br>
+<br>
+<form class="form-signin mt-5" (ngSubmit)="onSubmit(loginForm)" #loginForm="ngForm">
+  <!-- <img src="assets/images/logo_mini.png"class="logo" alt="logo"> -->
+  <br><br>
+  <h1 class="h3 mb-3 font-weight-normal text-center"><small><i class="fa fa-user-o" aria-hidden="true"></i></small> Log in</h1>
+  <label for="inputEmail" class="sr-only">Email address</label>
+  <input [(ngModel)]="user.identifier" name="identifier" #identifier="ngModel" type="text" id="inputIdentifier " class="form-control"
+    placeholder="User" required autofocus>
+  <label for="inputPassword" class="sr-only">Password</label>
+  <input [(ngModel)]="user.password" name="password" #password="ngModel" type="password" id="inputPassword" class="form-control"
+    placeholder="Password" required>
+  <br>
+  <button class="btn btn-lg btn-dark btn-block" type="submit">Sign in</button>
+
+</form>

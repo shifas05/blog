@@ -6,6 +6,7 @@ export const environment = {
   production: false,
   config: {
   	API:{
+  		host:'127.0.0.1:8000',
   		url:'http://blog.test/api'
   	}
   }
