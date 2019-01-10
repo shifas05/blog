@@ -1,16 +1,18 @@
-<br>
-<br>
-<form class="form-signin mt-5" (ngSubmit)="onSubmit(loginForm)" #loginForm="ngForm">
-  <!-- <img src="assets/images/logo_mini.png"class="logo" alt="logo"> -->
-  <br><br>
-  <h1 class="h3 mb-3 font-weight-normal text-center"><small><i class="fa fa-user-o" aria-hidden="true"></i></small> Log in</h1>
-  <label for="inputEmail" class="sr-only">Email address</label>
-  <input [(ngModel)]="user.identifier" name="identifier" #identifier="ngModel" type="text" id="inputIdentifier " class="form-control"
-    placeholder="User" required autofocus>
-  <label for="inputPassword" class="sr-only">Password</label>
-  <input [(ngModel)]="user.password" name="password" #password="ngModel" type="password" id="inputPassword" class="form-control"
-    placeholder="Password" required>
-  <br>
-  <button class="btn btn-lg btn-dark btn-block" type="submit">Sign in</button>
-
-</form>
+<div class="container">
+  <div class="alert alert-danger" role="alert" *ngIf="error">{{error.error}}</div>
+  <form (ngSubmit)="onSubmit(loginForm)" #loginForm="ngForm">
+    <div class="form-group">
+      <label for="inputEmail">Email address</label>
+      <input [(ngModel)]="user.identifier" name="identifier" #identifier="ngModel" type="text" id="inputIdentifier " class="form-control"
+      placeholder="User" required autofocus>
+    </div>
+    <div class="form-group">
+      <label for="inputPassword">Password</label>
+      <input [(ngModel)]="user.password" name="password" #password="ngModel" type="password" id="inputPassword" class="form-control"
+      placeholder="Password" required>
+    </div>
+    <button type="submit" class="btn btn-primary" [disabled]="loading">Sign in</button>
+    <img *ngIf="loading" src="data:image/gif;base64,R0lGODlhEAAQAPIAAP///wAAAMLCwkJCQgAAAGJiYoKCgpKSkiH/C05FVFNDQVBFMi4wAwEAAAAh/hpDcmVhdGVkIHdpdGggYWpheGxvYWQuaW5mbwAh+QQJCgAAACwAAAAAEAAQAAADMwi63P4wyklrE2MIOggZnAdOmGYJRbExwroUmcG2LmDEwnHQLVsYOd2mBzkYDAdKa+dIAAAh+QQJCgAAACwAAAAAEAAQAAADNAi63P5OjCEgG4QMu7DmikRxQlFUYDEZIGBMRVsaqHwctXXf7WEYB4Ag1xjihkMZsiUkKhIAIfkECQoAAAAsAAAAABAAEAAAAzYIujIjK8pByJDMlFYvBoVjHA70GU7xSUJhmKtwHPAKzLO9HMaoKwJZ7Rf8AYPDDzKpZBqfvwQAIfkECQoAAAAsAAAAABAAEAAAAzMIumIlK8oyhpHsnFZfhYumCYUhDAQxRIdhHBGqRoKw0R8DYlJd8z0fMDgsGo/IpHI5TAAAIfkECQoAAAAsAAAAABAAEAAAAzIIunInK0rnZBTwGPNMgQwmdsNgXGJUlIWEuR5oWUIpz8pAEAMe6TwfwyYsGo/IpFKSAAAh+QQJCgAAACwAAAAAEAAQAAADMwi6IMKQORfjdOe82p4wGccc4CEuQradylesojEMBgsUc2G7sDX3lQGBMLAJibufbSlKAAAh+QQJCgAAACwAAAAAEAAQAAADMgi63P7wCRHZnFVdmgHu2nFwlWCI3WGc3TSWhUFGxTAUkGCbtgENBMJAEJsxgMLWzpEAACH5BAkKAAAALAAAAAAQABAAAAMyCLrc/jDKSatlQtScKdceCAjDII7HcQ4EMTCpyrCuUBjCYRgHVtqlAiB1YhiCnlsRkAAAOwAAAAAAAAAAAA==" />
+  </form>
+</div>
+<button (click)="toast()">Toast</button>

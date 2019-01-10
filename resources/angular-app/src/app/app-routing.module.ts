@@ -10,16 +10,19 @@ import { PostsComponent } from './modules/main/pages/posts/posts.component';
 import { PostDetailComponent } from './modules/main/components/post-detail/post-detail.component';
 import { LoginComponent } from './modules/main/components/login/login.component';
 
+import { AuthGuard } from './modules/main/classes/auth.guard';
+
 const routes: Routes = [
 	{ path: '', redirectTo: 'dashboard', pathMatch: 'full' },
-	{ path: 'dashboard', component: DashboardComponent },
-	{ path:'students', component: StudentsComponent },
-	{ path: 'detail/:id', component: StudentDetailComponent },
-	{ path: 'users', component: UserComponent },
-	{ path: 'user-details/:id', component: UserDetailComponent },
-	{ path: 'posts', component: PostsComponent },
-	{ path: 'post-details/:id', component: PostDetailComponent },
+	{ path: 'dashboard', component: DashboardComponent, canActivate: [AuthGuard] },
+	{ path:'students', component: StudentsComponent, canActivate: [AuthGuard] },
+	{ path: 'detail/:id', component: StudentDetailComponent, canActivate: [AuthGuard] },
+	{ path: 'users', component: UserComponent, canActivate: [AuthGuard] },
+	{ path: 'user-details/:id', component: UserDetailComponent, canActivate: [AuthGuard] },
+	{ path: 'posts', component: PostsComponent, canActivate: [AuthGuard] },
+	{ path: 'post-details/:id', component: PostDetailComponent, canActivate: [AuthGuard] },
 	{ path: 'login', component: LoginComponent },
+
 ];
 
 @NgModule({

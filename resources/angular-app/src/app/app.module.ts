@@ -3,6 +3,10 @@ import { NgModule } from '@angular/core';
 import { FormsModule } from '@angular/forms';
 import { HttpClientModule } from '@angular/common/http'
 import { JwtModule } from '@auth0/angular-jwt';
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
+
+
+import { ToastrModule } from "ngx-toastr";
 
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
@@ -16,6 +20,10 @@ import { PostsComponent } from './modules/main/pages/posts/posts.component';
 import { PostDetailComponent } from './modules/main/components/post-detail/post-detail.component';
 import { API } from "./settings";
 import { LoginComponent } from './modules/main/components/login/login.component';
+
+import { AuthGuard } from './modules/main/classes/auth.guard';
+
+
 
 @NgModule({
   declarations: [
@@ -34,6 +42,8 @@ import { LoginComponent } from './modules/main/components/login/login.component'
     BrowserModule,
     AppRoutingModule,
     FormsModule,
+    BrowserAnimationsModule,
+    ToastrModule.forRoot(),
     HttpClientModule,
     JwtModule.forRoot({
       config: {
@@ -43,7 +53,7 @@ import { LoginComponent } from './modules/main/components/login/login.component'
       }
     })
   ],
-  providers: [],
+  providers: [ AuthGuard ],
   bootstrap: [AppComponent]
 })
 export class AppModule { }
