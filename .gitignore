@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 /node_modules
 /public/hot
 /public/storage
@@ -9,3 +10,10 @@ Homestead.json
 Homestead.yaml
 npm-debug.log
 yarn-error.log
+=======
+/vendor
+/.env
+/node_modules
+/composer.lock
+/package-lock.json
+>>>>>>> origin/master
