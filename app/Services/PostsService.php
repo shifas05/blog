@@ -39,8 +39,6 @@ class PostsService
 	}
 	public function addPostFront($data)
 	{
-		// return $data;
-		$this->post->user_id = "2";
 		$this->post->post = $data['post'];
 		$this->post->title = $data['title'];
 		if($this->post->save())

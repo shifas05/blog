@@ -13,7 +13,7 @@ export class PostDetailComponent implements OnInit {
   
   post:any;
   result:any;
-  addPost={}; 
+  addPost = new Post(2,null,null);
   submitted = false;
 
   constructor( 
@@ -29,14 +29,13 @@ export class PostDetailComponent implements OnInit {
   onSubmit(){
   	this.submitted = true;
   }
-  getPost():void {
+  getPost():any {
   	const id = +this.route.snapshot.paramMap.get('id');
   	this.postsService.getPost(id)
   		.subscribe(post => this.post = post);
   		
   }
-  newPost():void {
-  	// console.log(this.post.id)
+  newPost():any {
   	this.postsService.updatePost(this.post.id,this.post)
   		.subscribe(result => { 
   			if(result){
@@ -45,17 +44,12 @@ export class PostDetailComponent implements OnInit {
   	});
   }
   onSubmitPost(){
-
+	console.log(this.addPost)
+	this.postsService.addPosts(this.addPost)
+	.subscribe(result => { 
+		if(result){
+			this.router.navigate(['posts']);
+		}});
   }
-  addPosts(){
-  	// this.addPost.user_id = '2';
-  	this.postsService.addPosts(this.addPost)
-  		.subscribe(result => { 
-  			if(result){
-  				this.router.navigate(['posts']);
-  			}});
-
-  }
-
-
+  
 }
