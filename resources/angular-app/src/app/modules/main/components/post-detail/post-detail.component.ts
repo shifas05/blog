@@ -33,7 +33,7 @@ export class PostDetailComponent implements OnInit {
   	const id = +this.route.snapshot.paramMap.get('id');
   	this.postsService.getPost(id)
   		.subscribe(post => this.post = post);
-  		// console.log(this.post)
+  		
   }
   newPost():void {
   	// console.log(this.post.id)
