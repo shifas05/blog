@@ -1,0 +1,18 @@
+<div class="container">
+  <p>
+    server id is {{serverId}} and server  name is {{ getServerName() }}
+  </p>
+  
+  <button class="btn btn-primary" 
+  [disabled]="allowServer"
+  (click)="onAddServer()">Add Server</button>
+  <p [innerText]="allowServer"></p>
+  <p *ngIf ="serverStatus; else serverStatas" [ngStyle]="{ backgroundColor : getServerStatus() }">{{serverStatus}}</p>
+  <ng-template #serverStatas>
+    <p>no serve was created</p>
+  </ng-template>
+  <p [ngClass]="{online: serverStatus === 'online'}">hiiii iam online {{serverStatus}}</p>
+  <button (click)="onAddData()">Add Data</button>
+  <div *ngFor = "let d of data; let i = index" [ngStyle]="{backgroundColor : i > 4 ? 'red' : 'blue'}">{{d}}</div>
+</div>
+
