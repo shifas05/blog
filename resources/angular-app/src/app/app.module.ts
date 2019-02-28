@@ -22,6 +22,8 @@ import { API } from "./settings";
 import { LoginComponent } from './modules/main/components/login/login.component';
 
 import { AuthGuard } from './modules/main/classes/auth.guard';
+import { ServerComponent } from './modules/main/components/server/server.component';
+import { ServersComponent } from './modules/main/components/servers/servers.component';
 
 
 
@@ -37,6 +39,8 @@ import { AuthGuard } from './modules/main/classes/auth.guard';
     PostsComponent,
     PostDetailComponent,
     LoginComponent,
+    ServerComponent,
+    ServersComponent,
   ],
   imports: [
     BrowserModule,
