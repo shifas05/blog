@@ -1,69 +1,225 @@
-<p align="center"><img src="https://laravel.com/assets/img/components/logo-laravel.svg"></p>
+## The identical comparison will compare type and value.
 
-<p align="center">
-<a href="https://travis-ci.org/laravel/framework"><img src="https://travis-ci.org/laravel/framework.svg" alt="Build Status"></a>
-<a href="https://packagist.org/packages/laravel/framework"><img src="https://poser.pugx.org/laravel/framework/d/total.svg" alt="Total Downloads"></a>
-<a href="https://packagist.org/packages/laravel/framework"><img src="https://poser.pugx.org/laravel/framework/v/stable.svg" alt="Latest Stable Version"></a>
-<a href="https://packagist.org/packages/laravel/framework"><img src="https://poser.pugx.org/laravel/framework/license.svg" alt="License"></a>
-</p>
+$a = '42';
+$b = 42;
 
-## About Laravel
+if ($a !== $b) {
+    // The expression is verified
+}
 
-Laravel is a web application framework with expressive, elegant syntax. We believe development must be an enjoyable and creative experience to be truly fulfilling. Laravel attempts to take the pain out of development by easing common tasks used in the majority of web projects, such as:
+================================================
+## Function arguments (2 or fewer ideally)
 
-- [Simple, fast routing engine](https://laravel.com/docs/routing).
-- [Powerful dependency injection container](https://laravel.com/docs/container).
-- Multiple back-ends for [session](https://laravel.com/docs/session) and [cache](https://laravel.com/docs/cache) storage.
-- Expressive, intuitive [database ORM](https://laravel.com/docs/eloquent).
-- Database agnostic [schema migrations](https://laravel.com/docs/migrations).
-- [Robust background job processing](https://laravel.com/docs/queues).
-- [Real-time event broadcasting](https://laravel.com/docs/broadcasting).
+class MenuConfig
+{
+    public $title;
+    public $body;
+    public $buttonText;
+    public $cancellable = false;
+}
 
-Laravel is accessible, yet powerful, providing tools needed for large, robust applications.
+$config = new MenuConfig();
+$config->title = 'Foo';
+$config->body = 'Bar';
+$config->buttonText = 'Baz';
+$config->cancellable = true;
 
-## Learning Laravel
+function createMenu(MenuConfig $config): void
+{
+    // ...
+}
+-------------------------------------
+## Functions should do one thing
+This is by far the most important rule in software engineering. When functions do more than one thing, they are harder to compose, test, and reason about. When you can isolate a function to just one action, they can be refactored easily and your code will read much cleaner. If you take nothing else away from this guide other than this, you'll be ahead of many developers.
 
-Laravel has the most extensive and thorough [documentation](https://laravel.com/docs) and video tutorial library of any modern web application framework, making it a breeze to get started learning the framework.
+example for single purpose function 
 
-If you're not in the mood to read, [Laracasts](https://laracasts.com) contains over 1100 video tutorials on a range of topics including Laravel, modern PHP, unit testing, JavaScript, and more. Boost the skill level of yourself and your entire team by digging into our comprehensive video library.
+function emailClients(array $clients): void
+{
+    $activeClients = activeClients($clients);
+    array_walk($activeClients, 'email');
+}
 
-## Laravel Sponsors
+function activeClients(array $clients): array
+{
+    return array_filter($clients, 'isClientActive');
+}
 
-We would like to extend our thanks to the following sponsors for helping fund on-going Laravel development. If you are interested in becoming a sponsor, please visit the Laravel [Patreon page](https://patreon.com/taylorotwell):
+function isClientActive(int $client): bool
+{
+    $clientRecord = $db->find($client);
 
-- **[Vehikl](https://vehikl.com/)**
-- **[Tighten Co.](https://tighten.co)**
-- **[Kirschbaum Development Group](https://kirschbaumdevelopment.com)**
-- **[64 Robots](https://64robots.com)**
-- **[Cubet Techno Labs](https://cubettech.com)**
-- **[British Software Development](https://www.britishsoftware.co)**
-- **[Webdock, Fast VPS Hosting](https://www.webdock.io/en)**
-- **[DevSquad](https://devsquad.com)**
-- [UserInsights](https://userinsights.com)
-- [Fragrantica](https://www.fragrantica.com)
-- [SOFTonSOFA](https://softonsofa.com/)
-- [User10](https://user10.com)
-- [Soumettre.fr](https://soumettre.fr/)
-- [CodeBrisk](https://codebrisk.com)
-- [1Forge](https://1forge.com)
-- [TECPRESSO](https://tecpresso.co.jp/)
-- [Runtime Converter](http://runtimeconverter.com/)
-- [WebL'Agence](https://weblagence.com/)
-- [Invoice Ninja](https://www.invoiceninja.com)
-- [iMi digital](https://www.imi-digital.de/)
-- [Earthlink](https://www.earthlink.ro/)
-- [Steadfast Collective](https://steadfastcollective.com/)
-- [We Are The Robots Inc.](https://watr.mx/)
-- [Understand.io](https://www.understand.io/)
+    return $clientRecord->isActive();
+}
 
-## Contributing
+-----------------
 
-Thank you for considering contributing to the Laravel framework! The contribution guide can be found in the [Laravel documentation](https://laravel.com/docs/contributions).
+Example #1 array_walk() example
 
-## Security Vulnerabilities
+<?php
+$fruits = array("d" => "lemon", "a" => "orange", "b" => "banana", "c" => "apple");
 
-If you discover a security vulnerability within Laravel, please send an e-mail to Taylor Otwell via [taylor@laravel.com](mailto:taylor@laravel.com). All security vulnerabilities will be promptly addressed.
+function test_alter(&$item1, $key, $prefix)
+{
+    $item1 = "$prefix: $item1";
+}
 
-## License
+function test_print($item2, $key)
+{
+    echo "$key. $item2<br />\n";
+}
 
-The Laravel framework is open-sourced software licensed under the [MIT license](https://opensource.org/licenses/MIT).
+echo "Before ...:\n";
+array_walk($fruits, 'test_print');
+
+array_walk($fruits, 'test_alter', 'fruit');
+echo "... and after:\n";
+
+array_walk($fruits, 'test_print');
+?>
+
+## Function names should say what they do
+
+The best solution is move out the dependencies of parseBetterJSAlternative() function.
+
+------------------------------------------------------------
+
+## Don't use flags as function parameters
+
+touch — Sets access and modification time of file
+touch ( string $filename [, int $time = time() [, int $atime ]] ) : bool
+
+Attempts to set the access and modification times of the file named in the filename parameter to the value given in time. Note that the access time is always modified, regardless of the number of parameters.
+
+If the file does not exist, it will be created.
+
+## Avoid Side Effects
+
+## Encapsulate conditionals
+
+Good:
+
+if ($article->isPublished()) {
+    // ...
+}
+
+## Avoid negative conditionals
+
+## Avoid conditionals
+
+This seems like an impossible task. Upon first hearing this, most people say, "how am I supposed to do anything without an if statement?" The answer is that you can use polymorphism to achieve the same task in many cases. The second question is usually, "well that's great but why would I want to do that?" The answer is a previous clean code concept we learned: a function should only do one thing. When you have classes and functions that have if statements, you are telling your user that your function does more than one thing. Remember, just do one thing.
+
+## Avoid type-checking (part 1)
+
+function travelToTexas(Traveler $vehicle): void
+{
+    $vehicle->travelTo(new Location('texas'));
+}
+
+## Avoid type-checking (part 2)
+function combine(int $val1, int $val2): int
+{
+    return $val1 + $val2;
+}
+
+## Remove dead code
+## Make Objects have private/protected members
+
+Good:
+
+class Employee
+{
+    private $name;
+
+    public function __construct(string $name)
+    {
+        $this->name = $name;
+    }
+
+    public function getName(): string
+    {
+        return $this->name;
+    }
+}
+
+$employee = new Employee('John Doe');
+echo 'Employee name: '.$employee->getName(); // Employee name: John Doe
+
+## Prefer composition over inheritance
+
+You might be wondering then, "when should I use inheritance?" It depends on your problem at hand, but this is a decent list of when inheritance makes more sense than composition:
+
+Your inheritance represents an "is-a" relationship and not a "has-a" relationship (Human->Animal vs. User->UserDetails).
+You can reuse code from the base classes (Humans can move like all animals).
+You want to make global changes to derived classes by changing a base class. (Change the caloric expenditure of all animals when they move).
+
+## Avoid fluent interfaces
+
+class Car
+{
+    private $make = 'Honda';
+    private $model = 'Accord';
+    private $color = 'white';
+
+    public function setMake(string $make): void
+    {
+        $this->make = $make;
+    }
+
+    public function setModel(string $model): void
+    {
+        $this->model = $model;
+    }
+
+    public function setColor(string $color): void
+    {
+        $this->color = $color;
+    }
+
+    public function dump(): void
+    {
+        var_dump($this->make, $this->model, $this->color);
+    }
+}
+
+$car = new Car();
+$car->setColor('pink');
+$car->setMake('Ford');
+$car->setModel('F-150');
+$car->dump();
+
+## Prefer final classes
+
+interface Vehicle
+{
+    /**
+     * @return string The color of the vehicle
+     */
+    public function getColor();
+}
+
+final class Car implements Vehicle
+{
+    private $color;
+    
+    public function __construct($color)
+    {
+        $this->color = $color;
+    }
+    
+    /**
+     * {@inheritdoc}
+     */
+    public function getColor() 
+    {
+        return $this->color;
+    }
+}
+
+## SOLID
+
+- Single Responsibility Principle
+- Open/Closed Principle (OCP) :- This principle basically states that you should allow users to add new functionalities without changing existing code.
+- Liskov Substitution Principle (LSP)
+
+
