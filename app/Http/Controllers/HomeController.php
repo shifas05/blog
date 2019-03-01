@@ -26,6 +26,7 @@ class HomeController extends Controller
     public function index()
     {
         $posts = $this->postService->getEveryPosts();
+        // dd($posts->all());
         return view('home')->with('posts',$posts);
     }
 }

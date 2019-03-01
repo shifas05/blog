@@ -1,5 +1,6 @@
 {
     "/assets/app/css/font.css": "/assets/app/css/font.css",
     "/assets/app/common/css/style.css": "/assets/app/common/css/style.css",
-    "/assets/app/common/js/style.js": "/assets/app/common/js/style.js"
+    "/assets/app/common/js/style.js": "/assets/app/common/js/style.js",
+    "/app/app.vendor.js": "/app/app.vendor.js"
 }

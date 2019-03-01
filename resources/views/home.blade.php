@@ -4,14 +4,13 @@
     From the antartica
 </h3>
 @if(count($posts))
-@foreach( $posts as $post )
-
-<div class="blog-post">
-    <h2 class="blog-post-title">{{ $post->title }}</h2>
-    <p class="blog-post-meta">{{ $post->created_at->toFormattedDateString() }} by <a href="#">{{$post->user->name}}</a></p>
-    <p>This blog post shows a few different types of content that's supported and styled with Bootstrap. Basic typography, images, and code are all supported.</p>
-</div>
-@endforeach
+    @foreach( $posts as $post )
+        <div class="blog-post">
+            <h2 class="blog-post-title">{{ $post->title }}</h2>
+            <p class="blog-post-meta">{{ $post->created_at->toFormattedDateString() }} by <a href="#">{{$post->user->name}}</a></p>
+            <p>This blog post shows a few different types of content thats supported and styled with Bootstrap. Basic typography, images, and code are all supported.</p>
+        </div>
+    @endforeach
 @endif
 <!-- /.blog-post -->
 <div class="blog-post">

@@ -222,4 +222,19 @@ final class Car implements Vehicle
 - Open/Closed Principle (OCP) :- This principle basically states that you should allow users to add new functionalities without changing existing code.
 - Liskov Substitution Principle (LSP)
 
+## Null Coalescing Operator
+
+<?php
+if(!isset($_GET['key'])) {
+    $key = 'default-value';
+} else {
+    $key = $_GET['key'];
+}
+
+- instead of the above use below
+
+<?php
+$key = $_GET['key'] ?? 'default_value';
+
+
 
