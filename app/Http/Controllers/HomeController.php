@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\Services\PostsService;
+use Auth;
 
 class HomeController extends Controller
 {
@@ -23,10 +24,15 @@ class HomeController extends Controller
      *
      * @return \Illuminate\Contracts\Support\Renderable
      */
+  
     public function index()
     {
         $posts = $this->postService->getEveryPosts();
         // dd($posts->all());
-        return view('home')->with('posts',$posts);
+        // return view('home')->with('posts',$posts);
+        $user = Auth::id();
+        if($user){
+            return view('home-ajs');
+        }
     }
 }

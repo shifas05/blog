@@ -1,0 +1,33 @@
+<!-- aside -->
+<md-sidenav class="app-aside md-sidenav-left md-closed blue" style="color:#222;" md-component-id="aside" ng-include="'assets/app/home/views/aside.html'">
+</md-sidenav> 
+<!-- / aside -->
+
+<!-- content -->
+<div id="content" class="app-content" role="main">
+    <div class="box">
+    <!-- Content Navbar -->
+    <!-- Open side - Naviation on mobile -->
+   
+    <!-- / -->
+    <!-- Page title - Bind to $state's title -->
+    
+    <!-- / -->
+    <!-- Common tools -->
+       
+        <div class="pull-right" ui-view="navbar"></div>
+        <!-- / -->
+        <!-- Search form -->
+            
+        <!-- / -->
+        <!-- Content -->
+        <div class="box-row">
+            <div class="box-cell">
+                <div class="box-inner padding" ui-view="contentmain">
+                </div>
+            </div>
+        </div>
+        <!-- / -->
+    </div>
+</div>
+<!-- / content -->
