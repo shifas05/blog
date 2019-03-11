@@ -16,6 +16,7 @@ Route::get('/', function () {
 });
 
 Auth::routes();
+// Route::get('/auth/logout', ['middleware' => 'doNotCacheResponse', 'uses' => 'AuthController@getLogout']);
 // Route::get('/home', 'HomeController@index')->name('home');
 Route::resource('post', 'PostsController');
 Route::get('/post','PostsController@index')->name('post.index');
@@ -25,5 +26,7 @@ Route::post('user/auth-token', 'IndexController@angularPostLogin');
 Route::group(['middleware' => ['auth']], function () {
     Route::get('login-check', 'IndexController@angularLogin');
     Route::post('user/auth-token', 'IndexController@angularPostLogin');
-    Route::get('/home', 'HomeController@index')->name('home');
+    Route::get('/home', 'HomeController@index')->middleware('cacheResponse:5')->name('home');
 });
+
+
